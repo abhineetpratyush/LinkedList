@@ -1,9 +1,14 @@
 package com.capgemini.linkedlist;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
 
+import jdk.internal.org.jline.utils.Log;
+
 public class MyLinkedListTest {
+	private static final Logger log = LogManager.getLogger(MyLinkedListTest.class);
 	@Test
 	public void given3Numbers_WhenAddedToLinkedList_ShouldBeAddedToTop() {
 		MyNode<Integer> myFirstNode = new MyNode<Integer>(70);
@@ -100,6 +105,24 @@ public class MyLinkedListTest {
 		boolean result = myLinkedList.head.equals(myFirstNode) && myLinkedList.head.getNext().equals(mySecondNode) && myLinkedList.head.getNext().getNext().equals(myNodeToAdd) && myLinkedList.tail.equals(myThirdNode);
 		Assert.assertTrue(result);
 		myLinkedList.printMyNodes();
+	}
+
+	@Test
+	public void WhenFindKey40_DeleteIt_ShouldPassLinkedListTest() {
+		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
+		MyNode<Integer> mySecondNode = new MyNode<Integer>(30);
+		MyNode<Integer> myThirdNode = new MyNode<Integer>(70);
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(myThirdNode);
+		myLinkedList.insert(myFirstNode, mySecondNode);
+		MyNode<Integer> myNodeToAdd = new MyNode<Integer>(40);
+		myLinkedList.insertWhenFound(30, myNodeToAdd);
+		myLinkedList.printMyNodes();
+		Assert.assertEquals(myNodeToAdd, myLinkedList.deleteNodeWithKey(40));
+		Assert.assertEquals(3, myLinkedList.sizeOfLinkedList());
+		myLinkedList.printMyNodes();
+		log.info("The size of the linked list is : " + myLinkedList.sizeOfLinkedList());
 	}
 }
 

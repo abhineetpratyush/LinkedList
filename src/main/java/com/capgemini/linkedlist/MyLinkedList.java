@@ -93,4 +93,32 @@ public class MyLinkedList {
 			tempNode = tempNode.getNext();
 		}
 	}
+
+	public INode deleteNodeWithKey(Integer deleteKeyValue) {
+		INode returnNode = null;
+		INode currNode = head, prev = null; 
+		if (currNode != null && currNode.getKey() == deleteKeyValue) { 
+			head = currNode.getNext();  
+			returnNode = currNode;
+		} 
+		while (currNode != null && currNode.getKey() != deleteKeyValue) { 
+			prev = currNode; 
+			currNode = currNode.getNext(); 
+		}  
+		if (currNode != null) { 
+			prev.setNext(currNode.getNext());  
+			returnNode = currNode;
+		} 
+		return returnNode;
+	} 
+	
+	public int sizeOfLinkedList() {
+		int count = 0;
+		INode tempNode = head;
+		while(tempNode != null) {
+			count++;
+			tempNode = tempNode.getNext();
+		}
+		return count;
+	}
 }
