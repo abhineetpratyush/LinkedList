@@ -124,5 +124,24 @@ public class MyLinkedListTest {
 		myLinkedList.printMyNodes();
 		log.info("The size of the linked list is : " + myLinkedList.sizeOfLinkedList());
 	}
+	
+	@Test
+	public void given4Numbers_WhenAddedToLinkedList_ShouldBeAddedInAscendingOrder() {
+		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
+		MyNode<Integer> mySecondNode = new MyNode<Integer>(30);
+		MyNode<Integer> myThirdNode = new MyNode<Integer>(40);
+		MyNode<Integer> myFourthNode = new MyNode<Integer>(70);
+		SortedLinkedList myLinkedList = new SortedLinkedList();
+		myLinkedList.append(myFirstNode);
+		myLinkedList.printMyNodes();
+		myLinkedList.append(mySecondNode);
+		myLinkedList.printMyNodes();
+		myLinkedList.append(myThirdNode);
+		myLinkedList.printMyNodes();
+		myLinkedList.append(myFourthNode);
+		myLinkedList.printMyNodes();
+		boolean result = myLinkedList.head.equals(myFirstNode) && myLinkedList.head.getNext().equals(mySecondNode) && myLinkedList.head.getNext().getNext().equals(myThirdNode) && myLinkedList.tail.equals(myFourthNode);
+		Assert.assertTrue(result);
+	}
 }
 
