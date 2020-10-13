@@ -73,7 +73,7 @@ public class MyLinkedListTest {
 		Assert.assertEquals(myThirdNode, myLinkedList.popLast());
 		myLinkedList.printMyNodes();
 	}
-	
+
 	@Test
 	public void given3Numbers_WhenFindNode30_ShouldReturn30() {
 		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
@@ -84,6 +84,22 @@ public class MyLinkedListTest {
 		myLinkedList.append(myThirdNode);
 		myLinkedList.insert(myFirstNode, mySecondNode);
 		Assert.assertEquals(mySecondNode, myLinkedList.findNode(mySecondNode));
+	}
+
+	@Test
+	public void WhenFindKey30_Append40InFrontOfIt_ShouldPassLinkedListTest() {
+		MyNode<Integer> myFirstNode = new MyNode<Integer>(56);
+		MyNode<Integer> mySecondNode = new MyNode<Integer>(30);
+		MyNode<Integer> myThirdNode = new MyNode<Integer>(70);
+		MyLinkedList myLinkedList = new MyLinkedList();
+		myLinkedList.add(myFirstNode);
+		myLinkedList.append(myThirdNode);
+		myLinkedList.insert(myFirstNode, mySecondNode);
+		MyNode<Integer> myNodeToAdd = new MyNode<Integer>(40);
+		myLinkedList.insertWhenFound(30, myNodeToAdd);
+		boolean result = myLinkedList.head.equals(myFirstNode) && myLinkedList.head.getNext().equals(mySecondNode) && myLinkedList.head.getNext().getNext().equals(myNodeToAdd) && myLinkedList.tail.equals(myThirdNode);
+		Assert.assertTrue(result);
+		myLinkedList.printMyNodes();
 	}
 }
 
