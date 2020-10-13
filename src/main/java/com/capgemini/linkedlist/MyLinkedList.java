@@ -23,7 +23,7 @@ public class MyLinkedList {
 			this.head.setNext(tempNode);
 		}
 	}	
-	
+
 	public void append(INode newNode) {
 		if(this.head == null)
 			this.head = newNode;
@@ -52,10 +52,20 @@ public class MyLinkedList {
 		myNode.setNext(newNode);
 		newNode.setNext(tempNode);
 	}
-	
+
 	public INode pop() {
 		INode tempNode = this.head;
 		this.head = head.getNext();
+		return tempNode;
+	}
+
+	public INode popLast() {
+		INode tempNode = head;
+		while(!tempNode.getNext().equals(tail)) 
+			tempNode = tempNode.getNext();
+		this.tail = tempNode;
+		tempNode = tempNode.getNext();
+		this.tail.setNext(null);
 		return tempNode;
 	}
 }
